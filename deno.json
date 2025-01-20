@@ -1,0 +1,13 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-all --watch ./src/test.ts",
+    "generate": "deno run --allow-read --allow-write --allow-net --allow-env ./src/task/getByWiki.ts",
+    "update": "deno run --allow-read --allow-write --allow-net --allow-env ./src/task/update.ts"
+  },
+  "imports": {
+    "@deno-library/crc32": "jsr:@deno-library/crc32@^1.0.2",
+    "@std/fs": "jsr:@std/fs@^1.0.9",
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "cheerio": "npm:cheerio@^1.0.0"
+  }
+}
