@@ -16,6 +16,7 @@ async function main() {
         .setRefreshInterval('P1D')
         .setCalScale('GREGORIAN')
         .setTzid('Asia/Shanghai')
+        .setTzoffset('+0800')
         .build();
 
     const jsonItems: ReleaseJsonType = [];

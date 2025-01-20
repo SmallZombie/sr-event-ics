@@ -6,7 +6,7 @@ import { crc32 } from '@deno-library/crc32';
 async function getAllEvents(): Promise<EventType[]> {
     // 米游社wiki的活动一览页更新居然比b站还慢
     const eventsRes = await fetch('https://wiki.biligame.com/sr/活动一览').then(res => res.text());
-    // 因为时间区间会有 "x.x版本更新后"、"x.x版本结束前" 和 "x.x版本结束" 这种写法，所以这里要获取各个版本的更新时间
+    // 因为时间区间会有 "x.x版本更新后"、"x.x版本结束前"、"x.x版本结束" 和 "正式开服后" 这种写法，所以这里要获取各个版本的更新时间
     const versionRes = await fetch('https://wiki.biligame.com/sr/版本新增内容').then(res => res.text());
 
     // 先把版本数据处理了
@@ -51,6 +51,13 @@ async function getAllEvents(): Promise<EventType[]> {
             const key = match3[1];
             if (!(key in version)) throw new Error('Cannot find version: ' + key);
             return version[key].end;
+        }
+
+        // "正式开服后"
+        console.log('debug', dateStr);
+        const match4 = /正式开服后/.exec(dateStr);
+        if (match4) {
+            return new Date('2023-06-05T19:59:00.000Z');
         }
 
         return new Date(dateStr + ' UTC+0800');
