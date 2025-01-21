@@ -42,6 +42,10 @@ async function getAllEvents(): Promise<EventType[]> {
             const temp = new Date();
             temp.setMonth(temp.getMonth() + 1);
             temp.setDate(0);
+            temp.setHours(0);
+            temp.setMinutes(0);
+            temp.setSeconds(0);
+            temp.setMilliseconds(0);
             return temp;
         }
 
@@ -54,7 +58,6 @@ async function getAllEvents(): Promise<EventType[]> {
         }
 
         // "正式开服后"
-        console.log('debug', dateStr);
         const match4 = /正式开服后/.exec(dateStr);
         if (match4) {
             return new Date('2023-06-05T19:59:00.000Z');

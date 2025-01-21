@@ -20,8 +20,8 @@ jobs:
         with:
           deno-version: vx.x.x
 
-      - name: Run update task
-        run: deno task update
+      - name: Run task
+        run: deno task start
 
       - name: Commit and push if changes exist
         run: |

@@ -91,12 +91,10 @@ class Vcalendar {
                     item.uid = i.slice('UID:'.length);
                 } else if (i.startsWith('DTSTAMP:')) {
                     item.dtstamp = i.slice('DTSTAMP:'.length);
-                } else if (i.startsWith('DTSTART;VALUE=')) {
-                    const temp = i.slice('DTSTART;VALUE='.length);
-                    item.dtstart = temp.slice(temp.indexOf(':') + 1);
-                } else if (i.startsWith('DTEND;VALUE=')) {
-                    const temp = i.slice('DTEND;VALUE='.length);
-                    item.dtend = temp.slice(temp.indexOf(':') + 1);
+                } else if (i.startsWith('DTSTART')) {
+                    item.dtstart = i.slice(i.indexOf(':') + 1);
+                } else if (i.startsWith('DTEND')) {
+                    item.dtend = i.slice(i.indexOf(':') + 1);
                 } else if (i.startsWith('RRULE:')) {
                     item.rrule = i.slice('RRULE:'.length);
                 } else if (i.startsWith('SUMMARY:')) {
