@@ -1,3 +1,7 @@
+/**
+ * Last Update: 2025-01-22 12:00:00
+ */
+
 class Vcalendar {
     version: string;
     prodId: string;
@@ -219,6 +223,39 @@ function dateToDateTime(date: Date, tzid: string = 'Etc/UTC') {
     return temp.replaceAll('/', '').replace(' ', 'T').replaceAll(':', '') + 'Z';
 }
 
+function getFullYearByTimezone(date: Date, tzid: string = 'Etc/UTC'): number {
+    const options = {
+        timeZone: tzid,
+        year: 'numeric'
+    } as const;
+
+    // "xxxx年"
+    const temp = (new Intl.DateTimeFormat('zh-CN', options)).format(date);
+    return Number(temp.slice(0, -1));
+}
+
+function getDateByTimezone(date: Date, tzid: string = 'Etc/UTC'): number {
+    const options = {
+        timeZone: tzid,
+        day: 'numeric'
+    } as const;
+
+    // "[x]x日"
+    const temp = (new Intl.DateTimeFormat('zh-CN', options)).format(date);
+    return Number(temp.slice(0, -1));
+}
+
+function getMonthByTimezone(date: Date, tzid: string = 'Etc/UTC'): number {
+    const options = {
+        timeZone: tzid,
+        month: 'numeric'
+    } as const;
+
+    // "[x]x月"
+    const temp = (new Intl.DateTimeFormat('zh-CN', options)).format(date);
+    return Number(temp.slice(0, -1));
+}
+
 
 export type {
     Vevent
@@ -226,5 +263,8 @@ export type {
 export {
     Vcalendar,
     VcalendarBuilder,
-    timeout
+    timeout,
+    getFullYearByTimezone,
+    getDateByTimezone,
+    getMonthByTimezone
 }

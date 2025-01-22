@@ -40,12 +40,12 @@ async function getAllEvents(): Promise<EventType[]> {
             // 这里加个兜底，因为有的活动结束时间远超 wiki 中的最新版本
             // 一个粗略的解决方法：返回一个本月底的日期，直到版本 wiki 更新或下个月
             const temp = new Date();
-            temp.setMonth(temp.getMonth() + 1);
-            temp.setDate(0);
-            temp.setHours(0);
-            temp.setMinutes(0);
-            temp.setSeconds(0);
-            temp.setMilliseconds(0);
+            temp.setUTCMonth(temp.getUTCMonth() + 1);
+            temp.setUTCDate(0);
+            temp.setUTCHours(0);
+            temp.setUTCMinutes(0);
+            temp.setUTCSeconds(0);
+            temp.setUTCMilliseconds(0);
             return temp;
         }
 
